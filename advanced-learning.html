@@ -1,0 +1,166 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Site - InvestWise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="advanced-learning.css">
+    <img src="SATTA.png" alt="Sai Trading Academy Logo" class="logo" style="position: absolute; top: 30px; left: 80px; max-width: 175px; height: 200px;">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">Sai Trading Academy</h1>
+        <p class="tagline">Empowering beginners with financial and stock market literacy</p>
+        <nav class="nav">
+            <a href="stock-market-101.html">Financial Market Starter</a>
+            <a href="advanced-learning.html">Advanced Learning</a>
+            <a href="contact-us.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <nav class="nav" style="display: flex; justify-content: center; gap: 30px; padding: 15px;">
+            <a href="#intraday" style="color: #ffffff; font-size: 1.1rem; font-family: 'Poppins', sans-serif; text-decoration: none; padding: 8px 16px; border-radius: 20px; background: #2a5d52; transition: background 0.3s ease, color 0.3s ease;">Intraday</a>
+            <a href="#option" style="color: #ffffff; font-size: 1.1rem; font-family: 'Poppins', sans-serif; text-decoration: none; padding: 8px 16px; border-radius: 20px; background: #2a5d52; transition: background 0.3s ease, color 0.3s ease;">Options</a>
+            <a href="#all" style="color: #ffffff; font-size: 1.1rem; font-family: 'Poppins', sans-serif; text-decoration: none; padding: 8px 16px; border-radius: 20px; background: #2a5d52; transition: background 0.3s ease, color 0.3s ease;">All</a>
+        </nav>
+        <!-- Intraday Section -->
+        <div class="section" id="intraday">
+            <h1><span class="emoji">📈</span> Intraday</h1>
+            <div class="box-container">
+                <div class="box">
+                    <img src="Intraday1.jpg" alt="Intraday Image 1">
+                    <h2><span class="emoji">🟢</span> Intraday Basics</h2>
+            <p>Perfect for beginners who want to understand the fundamentals of intraday trading.</p>
+            <p><strong><span class="emoji">🔹</span> What you'll learn:</strong></p>
+            <ul>
+                <li>What is intraday trading and how it works</li>
+                <li>Tools and platforms used (charts, indicators, apps)</li>
+                <li>How to find good stocks to trade</li>
+                <li>Timing your trades (entry & exit)</li>
+                <li>Real-time market observation techniques</li>
+            </ul>
+            <p><span class="emoji">⏱</span> <strong>Duration:</strong> 1 week | <span class="emoji">🧑‍🏫</span> <strong>Mode:</strong> Live + Recorded</p>
+                </div>
+                <div class="box">
+                    <img src="Intraday2.jpg" alt="Intraday Image 2">
+                    <h2><span class="emoji">🟡</span> Intraday Pro</h2>
+    <p>A step up from the basics—get into strategies, psychology, and precision.</p>
+    <p><strong><span class="emoji">🔹</span> What you'll learn:</strong></p>
+    <ul>
+        <li>Top strategies used by pro traders (Breakout, Reversal, Scalping)</li>
+        <li>Chart pattern reading and indicator combinations</li>
+        <li>Managing risk in high-speed environments</li>
+        <li>Live demo sessions with real stocks</li>
+        <li>Building a personal trading routine</li>
+    </ul>
+    <p><span class="emoji">⏱</span> <strong>Duration:</strong> 2 weeks | <span class="emoji">🧑‍🏫</span> <strong>Mode:</strong> Live Sessions + Case Studies</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option Section -->
+        <div class="section" id="option">
+            <h1><span class="emoji">📊</span> Options</h1>
+            <div class="box-container">
+                <div class="box">
+                    <img src="Option1.jpg" alt="Option Image 1">
+                    <h2><span class="emoji">🟢</span> Options Basics</h2>
+    <p>Learn what options are and how to trade them safely.</p>
+    <p><strong><span class="emoji">🔹</span> What you'll learn:</strong></p>
+    <ul>
+        <li>Call & Put explained in the simplest way</li>
+        <li>Strike price, premium, and expiry</li>
+        <li>How to place your first options trade</li>
+        <li>Common beginner mistakes to avoid</li>
+        <li>Hands-on practice with demo accounts</li>
+    </ul>
+    <p><span class="emoji">⏱</span> <strong>Duration:</strong> 1 week | <span class="emoji">🧑‍🏫</span> <strong>Mode:</strong> Interactive + Practical Assignments</p>
+                </div>
+                <div class="box">
+                    <img src="Option2.jpg" alt="Option Image 2">
+                    <h2><span class="emoji">🟡</span> Options Pro</h2>
+    <p>Advanced strategies and techniques for mastering options trading.</p>
+    <p><strong><span class="emoji">🔹</span> What you'll learn:</strong></p>
+    <ul>
+        <li>Option Greeks made easy (Delta, Theta, Vega)</li>
+        <li>Multi-leg strategies (Straddle, Iron Condor, Spread setups)</li>
+        <li>Hedging techniques and position sizing</li>
+        <li>Reading option chains for decision-making</li>
+        <li>Strategy selection based on market view</li>
+    </ul>
+    <p><span class="emoji">⏱</span> <strong>Duration:</strong> 2 weeks | <span class="emoji">🧑‍🏫</span> <strong>Mode:</strong> Live Trades + Strategy Labs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Section -->
+        <div class="section" id="all">
+            <h1><span class="emoji">💼</span> All</h1>
+            <div class="box-container">
+                <div class="box single-box">
+                    <img src="all.jpg" alt="All Image">
+                    <h2><span class="emoji">🧠</span> All-in-One + Risk Management</h2>
+    <p>Get the complete package—Intraday + Options + Smart Risk Handling</p>
+    <h3><span class="emoji">🔵</span> Complete Trader Blueprint</h3>
+    <p>All courses combined in one program, plus a dedicated focus on managing your risk.</p>
+    <p><strong><span class="emoji">🔹</span> What you'll learn:</strong></p>
+    <ul>
+        <li>Everything from Intraday & Options courses</li>
+        <li>How to build a balanced portfolio alongside trading</li>
+        <li>Position sizing and capital allocation</li>
+        <li>Risk-reward ratio planning</li>
+        <li>Emotional discipline and trading psychology</li>
+        <li>Journaling and reviewing your own trades</li>
+    </ul>
+    <p><span class="emoji">⏱</span> <strong>Duration:</strong> 4+ weeks | <span class="emoji">🧑‍🏫</span> <strong>Mode:</strong> Masterclass + Mentorship Support</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Sai Trading Academy</p>
+    </footer>
+</body>
+</html>

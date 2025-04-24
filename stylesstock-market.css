@@ -1,0 +1,303 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Soothing gradient background */
+    color: #333;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Header Section */
+.header {
+    background: linear-gradient(135deg, #1a3c34, #2a5d52); /* Deep teal gradient */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Removed sticky properties to allow header to scroll up */
+    /* position: sticky; */
+    /* top: 0; */
+    /* z-index: 100; */
+}
+
+/* Logo (InvestWise) */
+.header .logo {
+    color: #ffffff;
+    font-size: 2.8rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.header .logo::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #ff6f61, #ffb88c); /* Coral to peach gradient */
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Tagline (Empowering beginners...) */
+.header .tagline {
+    color: #ffb88c; /* Peach color for contrast */
+    font-size: 1.2rem;
+    font-style: italic;
+    font-family: 'Poppins', sans-serif;
+    margin: 10px 0 20px;
+    opacity: 0.9;
+}
+
+/* Navigation Menu */
+.header .nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.header .nav a {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.header .nav a:hover {
+    background: #ff6f61; /* Coral background on hover */
+    color: #ffffff;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1200px; /* Wider container */
+    margin: 20px auto; /* Moved slightly down */
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px); /* Subtle lift effect on hover */
+}
+
+/* Headings */
+h1 {
+    color: #1a3c34; /* Deep teal for main heading */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: '';
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(to right, #ff6f61, #ffb88c); /* Coral to peach gradient */
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    border-radius: 2px;
+}
+
+h2 {
+    color: #ff6f61; /* Vibrant coral for subheadings */
+    font-size: 1.8rem;
+    margin: 30px 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Paragraphs and Lists */
+p {
+    margin: 12px 0;
+    color: #4a4a4a;
+    font-size: 1.1rem;
+}
+
+ul, ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+    color: #333;
+    position: relative;
+    padding-left: 15px;
+}
+
+li::before {
+    content: '•';
+    color: #ffb88c; /* Peach bullet points */
+    font-size: 1.5rem;
+    position: absolute;
+    left: -10px;
+    top: 0;
+}
+
+/* Highlight Section */
+.highlight {
+    background: #e6f3fa; /* Light cyan background */
+    padding: 15px;
+    border-left: 5px solid #1a73e8; /* Bright blue accent */
+    margin: 15px 0;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    transition: background 0.3s ease;
+}
+
+.highlight:hover {
+    background: #d1e9f6; /* Slightly darker on hover */
+}
+
+/* Tip Styles */
+.tip {
+    font-style: italic;
+    color: #6b7280; /* Muted gray for tips */
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* Emoji Styles */
+.emoji {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* Links */
+a {
+    color: #1a73e8; /* Bright blue for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff6f61; /* Coral on hover */
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header .logo {
+        font-size: 2.2rem;
+    }
+
+    .header .tagline {
+        font-size: 1rem;
+    }
+
+    .header .nav {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .header .nav a {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p, li {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 15px 0;
+    }
+
+    .header .logo {
+        font-size: 1.8rem;
+    }
+
+    .header .tagline {
+        font-size: 0.9rem;
+        margin: 8px 0 15px;
+    }
+
+    .header .nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    margin: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+th {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+td {
+    color: #555;
+    font-size: 14px;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+.emoji {
+    margin-right: 5px;
+}
